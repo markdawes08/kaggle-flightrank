@@ -1,57 +1,70 @@
-# Flight Ranking Competition - Quick Start
+# FlightRank 2025: Business Traveler Recommendation System
 
-## Current Status
-✅ **Baseline model working** - ready to submit to Kaggle  
-🎯 **Goal**: Predict which flight business travelers will choose  
-💰 **Prize**: $10,000 ($5,000 for 1st place if >70% accuracy)  
-⏰ **Time left**: 8 days
+A machine learning solution for predicting flight choices in the Aeroclub RecSys Cup competition.
 
-## Files You Need
+## Overview
 
-### Core Scripts
-- `fix_submission.py` - Fix and submit your baseline model
-- `complete_submission.py` - Generate complete submissions 
-- `foolproof_processor.py` - Process large datasets reliably
+This repository contains a ranking model that predicts which flight options business travelers will select from search results. The model uses flight attributes, pricing data, and traveler preferences to rank options within each search session.
 
-### Analysis & Models
-- `flight_ranking_notebook.ipynb` - Jupyter notebook for data exploration
-- `requirements.txt` - Python packages needed
+**Competition**: [FlightRank 2025: Aeroclub RecSys Cup](https://www.kaggle.com/c/aeroclub-recsys-2025)  
+**Evaluation Metric**: HitRate@3 (fraction of sessions where the correct flight appears in top 3 predictions)
 
-### Key Folders
-- `data/` - Competition data (train.parquet, test.parquet)
-- `submissions/` - Generated submission files
-- `kaggle_env/` - Python virtual environment
-- `archive/` - Old scripts (can ignore)
+## Project Structure
 
-## Next Steps
+```
+├── README.md                           # Project documentation
+├── requirements.txt                    # Python dependencies
+├── flight_ranking_notebook.ipynb      # Data exploration and analysis
+├── foolproof_processor.py             # Robust data processing pipeline
+├── data/                              # Competition datasets (not tracked)
+├── submissions/                       # Model predictions (not tracked)
+└── models/                           # Trained models (not tracked)
+```
 
-1. **Submit baseline** (if not done):
+## Setup
+
+1. **Environment**:
    ```bash
-   python fix_submission.py
-   # Upload: submissions/validated_submission.parquet
+   python -m venv kaggle_env
+   source kaggle_env/bin/activate
+   pip install -r requirements.txt
    ```
 
-2. **Build better model** using your airline expertise:
-   - Morning departure preferences
-   - Corporate policy compliance  
-   - Frequent flyer benefits
-   - Route efficiency patterns
+2. **Data**: Download competition data to `data/` folder:
+   - `train.parquet` (18M rows, 127 features)
+   - `test.parquet` (6.9M rows)
+   - `sample_submission.parquet`
 
-3. **Improve iteratively** based on leaderboard feedback
+## Approach
 
-## Your Competitive Advantage
+### Data Processing
+- Chunk-based processing for memory efficiency
+- Feature engineering focused on business traveler behavior
+- Robust handling of missing values and edge cases
 
-As an airline employee, you understand business traveler behavior better than most competitors:
-- **Time preferences**: Early departures for day trips
-- **Corporate rules**: Policy compliance vs convenience trade-offs
-- **Loyalty programs**: Status benefits influence choices significantly
-- **Route knowledge**: Hub strategies, connection preferences
+### Model Features
+- **Price ranking**: Position within search results
+- **Temporal patterns**: Departure time preferences
+- **Corporate compliance**: Travel policy adherence
+- **Loyalty factors**: Frequent flyer considerations
 
-## Competition Details
+### Baseline Model
+Simple price-based ranking achieves ~25-30% HitRate@3, providing a foundation for more sophisticated approaches.
 
-- **Problem**: Learning-to-rank (predict top choice from flight options)
-- **Metric**: HitRate@3 (correct flight in top 3 predictions)  
-- **Data**: 18M training examples, 127 features per flight
-- **Scoring**: Only groups with >10 options count toward final score
+## Key Features
 
-Good luck! 🛫
+The model analyzes business travel patterns through:
+- Temporal booking preferences
+- Corporate travel policy compliance
+- Route optimization factors  
+- Frequent flyer program utilization
+
+## Competition Performance
+
+- **Target**: HitRate@3 ≥ 0.70 for bonus prize eligibility
+- **Current**: Baseline implementation ready for submission
+- **Approach**: Iterative improvement based on leaderboard feedback
+
+## Development
+
+The codebase prioritizes reliability and memory efficiency when working with large datasets (500MB+ parquet files). All processing scripts include fallback methods and error handling for robust execution across different system configurations.

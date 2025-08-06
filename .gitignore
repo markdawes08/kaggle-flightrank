@@ -1,0 +1,99 @@
+# Kaggle Competition - Flight Ranking
+# Data files and large files that shouldn't be in git
+
+# Data files (too large for git)
+data/
+*.parquet
+*.csv
+*.zip
+*.kaggle
+*.tar
+*.gz
+
+# Model files
+models/
+*.pkl
+*.joblib
+*.model
+*.h5
+
+# Submission files
+submissions/
+*.parquet
+
+# Python environment
+kaggle_env/
+venv/
+env/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Log files
+*.log
+*.out
+*.txt
+
+# But keep requirements.txt
+!requirements.txt
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Archive folder (old scripts)
+archive/
+
+# Large JSON files
+jsons_raw.tar.kaggle
+*.json
+
+# Competition specific large files
+flight_data.db
+analysis_results.txt
+processing_results.json
+chunk_results.json
+model_summary.json
